@@ -4,7 +4,11 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/** Clase para gestionar la recepción de datos en un canal FTP */
+/**
+ * Clase para gestionar la recepción de datos en un canal FTP
+ * 
+ * @author Natalia Rey Loroño
+ */
 public class ClientFtpDataService implements Runnable {
     /** Socket de datos conectado al servidor FTP */
     private Socket dataSckt;

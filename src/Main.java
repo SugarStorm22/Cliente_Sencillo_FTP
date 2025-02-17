@@ -1,6 +1,10 @@
 import java.io.IOException;
 
-/** Clase principal */
+/**
+ * Clase principal
+ * 
+ * @author Natalia Rey Loroño
+ */
 public class Main {
     /**
      * Método principal para la ejecución del programa

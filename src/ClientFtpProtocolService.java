@@ -11,7 +11,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/** Clase para gestionar la comunicación con un servidor FTP */
+/**
+ * Clase para gestionar la comunicación con un servidor FTP
+ * 
+ * @author Natalia Rey Loroño
+ */
 public class ClientFtpProtocolService implements Runnable {
 
     /** Socket para la comunicación con el servidor en el canal de control */
