@@ -47,7 +47,7 @@ public class ClientFtpProtocolService implements Runnable {
      * 
      * @param server Dirección del servidor FTP
      * @param port   Puerto de conexión
-     * @throws IOException 
+     * @throws IOException
      */
     public void connectTo(String server, int port) throws IOException {
         controlSckt = new Socket(server, port);
@@ -59,6 +59,7 @@ public class ClientFtpProtocolService implements Runnable {
 
     /**
      * Autentica al usuario en el servidor FTP
+     * 
      * @param user Nombre del usuario
      * @param pass Contraseña
      */
@@ -83,6 +84,7 @@ public class ClientFtpProtocolService implements Runnable {
 
     /**
      * Envía el comando QUIT para cerrar la conexión con el servidor
+     * 
      * @return Comando
      */
     public String sendQuit() {
@@ -93,6 +95,7 @@ public class ClientFtpProtocolService implements Runnable {
 
     /**
      * Envía el comando PWD para obtener el directorio de trabajo actual
+     * 
      * @return Comando
      */
     public String sendPwd() {
@@ -103,6 +106,7 @@ public class ClientFtpProtocolService implements Runnable {
 
     /**
      * Envía el comando CWD para cambiar de directorio
+     * 
      * @param down
      * @return Comando
      */
@@ -114,6 +118,7 @@ public class ClientFtpProtocolService implements Runnable {
 
     /**
      * Envía el comando CDUP para subir al directorio padre.
+     * 
      * @return Comando
      */
     public String sendCdup() {
@@ -124,6 +129,7 @@ public class ClientFtpProtocolService implements Runnable {
 
     /**
      * Envía el comando PASV
+     * 
      * @return Comando enviado
      */
     public String sendPassv() {
@@ -152,6 +158,7 @@ public class ClientFtpProtocolService implements Runnable {
 
     /**
      * Envía el comando RETR para descargar un archivo remoto
+     * 
      * @param remote
      * @param out
      * @param closeOutput
@@ -164,7 +171,8 @@ public class ClientFtpProtocolService implements Runnable {
             System.err.println("Canal de datos no iniciado. Llama a sendPassv() antes de RETR.");
             return null;
         }
-        ClientFtpDataService dataSrv = new ClientFtpDataService(dataSckt, out, closeOutput, dataChannelLock, dataChannelInUse);
+        ClientFtpDataService dataSrv = new ClientFtpDataService(dataSckt, out, closeOutput, dataChannelLock,
+                dataChannelInUse);
         new Thread(dataSrv).start();
         dataSckt = null;
         return command;
@@ -172,10 +180,11 @@ public class ClientFtpProtocolService implements Runnable {
 
     /**
      * Envía el comando LIST para listar los archivos en el directorio actual
+     * 
      * @param out
      * @param closeOutput
      * @return Comando
-     */    
+     */
     public String sendList(OutputStream out, boolean closeOutput) {
         String command = "LIST";
         sendCommand(command);
@@ -222,7 +231,9 @@ public class ClientFtpProtocolService implements Runnable {
     }
 
     /**
-     * Parsea la respuesta PASV del servidor FTP para obtener la dirección y puerto del canal de datos
+     * Parsea la respuesta PASV del servidor FTP para obtener la dirección y puerto
+     * del canal de datos
+     * 
      * @param response
      * @return Dirección y puerto del canal de datos o null si ocurre un error
      */
@@ -243,6 +254,7 @@ public class ClientFtpProtocolService implements Runnable {
 
     /**
      * Envía un comando al servidor FTP
+     * 
      * @param command Comando FTP a enviar
      */
     private void sendCommand(String command) {
